@@ -17,14 +17,10 @@ import {
 } from 'react-native';
 
 import CategoriesScreen from './screens/CategoriesScreen';
+import MealsNavigator from './navigation/MealsNavigation';
 
 const App: () => React$Node = () => {
-  return (
-    <View style={styles.screen}>
-      <Text>Meals App working!</Text>
-      <CategoriesScreen />
-    </View>
-  );
+  return <MealsNavigator />;
 };
 
 const styles = StyleSheet.create({
