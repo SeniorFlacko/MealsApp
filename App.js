@@ -16,14 +16,22 @@ import {
   StatusBar,
 } from 'react-native';
 
+import CategoriesScreen from './screens/CategoriesScreen';
+
 const App: () => React$Node = () => {
   return (
-    <View>
+    <View style={styles.screen}>
       <Text>Meals App working!</Text>
+      <CategoriesScreen />
     </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    backgroundColor: '#ccc',
+  },
+});
 
 export default App;
