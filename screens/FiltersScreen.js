@@ -12,7 +12,7 @@ const FiltersScreen = (props) => {
 
 FiltersScreen['navigationOptions'] = (navigationData) => {
   return {
-    title: 'FilterMeals',
+    title: 'Filter Meals',
     headerLeft: () => (
       <TouchableOpacity
         onPress={() => {
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   icon: {
-    color: 'black',
+    color: 'white',
     marginHorizontal: 15,
   },
 });
