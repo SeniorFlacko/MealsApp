@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {View, StyleSheet, Text, TouchableOpacity, Switch} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Colors from '../constants/Colors';
@@ -20,10 +20,28 @@ const FilterSwitch = (props) => {
 };
 
 const FiltersScreen = (props) => {
+  const {navigation} = props;
   const [isGlutenFree, setIsGlutenFree] = useState(false);
   const [isLactoseFree, setIsLactoseFree] = useState(false);
   const [isVegan, setIsVegan] = useState(false);
   const [isVegetarian, setIsVegetarian] = useState(false);
+
+  const saveFilters = useCallback(() => {
+    const appliedFilters = {
+      glutenFree: isGlutenFree,
+      lactoseFree: isLactoseFree,
+      vegan: isVegan,
+      isVegetarian: isVegetarian,
+    };
+
+    console.log(appliedFilters);
+  }, [isGlutenFree, isLactoseFree, isVegetarian, isVegan]);
+
+  useEffect(() => {
+    navigation.setParams({
+      save: saveFilters,
+    });
+  }, [saveFilters]);
 
   return (
     <View style={styles.screen}>
@@ -71,6 +89,13 @@ FiltersScreen['navigationOptions'] = (navigationData) => {
         <Icon style={styles.icon} name="menu-outline" size={23} />
       </TouchableOpacity>
     ),
+    headerRight: () => {
+      return (
+        <TouchableOpacity onPress={navigationData.navigation.getParam('save')}>
+          <Icon style={styles.icon} name="save-outline" size={23} />
+        </TouchableOpacity>
+      );
+    },
   };
 };
 
