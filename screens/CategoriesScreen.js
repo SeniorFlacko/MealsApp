@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import {CATEGORIES} from '../data/dummy-data';
 import CategoryGridTile from '../components/CategoryGridTile';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const CategoriesScreen = (props) => {
   const renderGridItem = (itemData) => {
@@ -32,9 +33,17 @@ const CategoriesScreen = (props) => {
   );
 };
 
-CategoriesScreen['navigationOptions'] = () => {
+CategoriesScreen['navigationOptions'] = (navigationData) => {
   return {
     title: 'Meal Categories',
+    headerLeft: () => (
+      <TouchableOpacity
+        onPress={() => {
+          navigationData.navigation.toggleDrawer();
+        }}>
+        <Icon style={styles.icon} name="menu-outline" size={23} />
+      </TouchableOpacity>
+    ),
   };
 };
 
@@ -43,6 +52,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  icon: {
+    color: 'white',
+    marginHorizontal: 15,
   },
 });
 export default CategoriesScreen;
