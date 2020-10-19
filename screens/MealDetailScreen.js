@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, Text, Button} from 'react-native';
 import {MEALS} from '../data/dummy-data';
+import HeaderButton from '../components/HeaderButton';
 
 const MealDetailScreen = (props) => {
   const mealId = props.navigation.getParam('mealId');
@@ -25,6 +26,7 @@ MealDetailScreen['navigationOptions'] = (navigationData) => {
 
   return {
     headerTitle: selectedMeal.title,
+    headerRight: () => <HeaderButton />,
   };
 };
 
