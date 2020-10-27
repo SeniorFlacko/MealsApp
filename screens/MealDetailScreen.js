@@ -25,11 +25,21 @@ const MealDetailScreen = (props) => {
     console.log('Dispatching toggle favorite');
   }, [dispatch, mealId]);
 
+  const currentMealIsFavorite = useSelector((state) =>
+    state.meals.favoriteMeals.some((meal) => meal.id === mealId),
+  );
+
   useEffect(() => {
     props.navigation.setParams({
       toggleFavoriteHandler: toggleFavoriteHandler,
     });
   }, [toggleFavoriteHandler]);
+
+  useEffect(() => {
+    props.navigation.setParams({
+      isFavoriteAlready: currentMealIsFavorite,
+    });
+  }, [currentMealIsFavorite]);
 
   return (
     <ScrollView>
@@ -60,11 +70,27 @@ MealDetailScreen['navigationOptions'] = (navigationData) => {
     'toggleFavoriteHandler',
   );
 
+  const isFavoriteAlready = navigationData.navigation.getParam(
+    'isFavoriteAlready',
+  );
+
+  console.log('isFavoriteAlready: ', isFavoriteAlready);
+
   return {
     headerTitle: mealTitle,
-    headerRight: () => (
-      <HeaderButton toggleFavoriteHandler={toggleFavoriteFromNavigator} />
-    ),
+    headerRight: () => {
+      return isFavoriteAlready ? (
+        <HeaderButton
+          filled={true}
+          toggleFavoriteHandler={toggleFavoriteFromNavigator}
+        />
+      ) : (
+        <HeaderButton
+          filled={false}
+          toggleFavoriteHandler={toggleFavoriteFromNavigator}
+        />
+      );
+    },
   };
 };
 

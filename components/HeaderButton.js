@@ -7,7 +7,11 @@ const HeaderButton = (props) => {
   return (
     <TouchableOpacity onPress={props.toggleFavoriteHandler}>
       <View style={styles.iconContainer}>
-        <Icon style={styles.icon} name="star-outline" size={23} />
+        {props.filled ? (
+          <Icon style={styles.icon} name="star" size={23} />
+        ) : (
+          <Icon style={styles.icon} name="star-outline" size={23} />
+        )}
       </View>
     </TouchableOpacity>
   );
