@@ -5,10 +5,7 @@ import Colors from '../constants/Colors';
 
 const HeaderButton = (props) => {
   return (
-    <TouchableOpacity
-      onPress={() => {
-        console.log('Hello!');
-      }}>
+    <TouchableOpacity onPress={props.toggleFavoriteHandler}>
       <View style={styles.iconContainer}>
         <Icon style={styles.icon} name="star-outline" size={23} />
       </View>
