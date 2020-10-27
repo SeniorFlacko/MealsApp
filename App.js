@@ -18,9 +18,22 @@ import {
 
 import CategoriesScreen from './screens/CategoriesScreen';
 import MealsNavigator from './navigation/MealsNavigation';
+import {createStore, combineReducers} from 'redux';
+import mealsReducer from './store/reducers/meals';
+import {Provider} from 'react-redux';
+
+const rootReducer = combineReducers({
+  meals: mealsReducer,
+});
+
+const store = createStore(rootReducer);
 
 const App: () => React$Node = () => {
-  return <MealsNavigator />;
+  return (
+    <Provider store={store}>
+      <MealsNavigator />
+    </Provider>
+  );
 };
 
 const styles = StyleSheet.create({
